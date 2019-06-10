@@ -28,6 +28,12 @@ export function initRender (vm: Component) {
   // so that we get proper render context inside it.
   // args order: tag, data, children, normalizationType, alwaysNormalize
   // internal version is used by render functions compiled from templates
+
+  // entry-runtime-with-compiler.js中，判断vue选项中有没有render函数，如果有，表示自定义的
+  //render函数，render函数生成的vdom，就调用vm.$createElenent方法去创建真实的dom，
+  //如果vue选项中没有render函数，通过vue的编译模版生成render函数，调用vm._c方法去创建真实dom
+  //在_render方法中使用render.call()
+
   //编译模版生成的render函数使用的方法
   vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
   // normalization is always applied for the public version, used in
@@ -91,6 +97,7 @@ export function renderMixin (Vue: Class<Component>) {
       // when parent component is patched.
       currentRenderingInstance = vm
       //_renderProxy方法，在core/instance/render.js中定义
+      // 通过高阶函数的方法，将vm.$createElement函数传入render函数中，并执行vm.$createElement方法
       vnode = render.call(vm._renderProxy, vm.$createElement)
     } catch (e) {
       handleError(e, vm, `render`)
