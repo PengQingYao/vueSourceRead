@@ -286,6 +286,7 @@ function initMethods (vm: Component, methods: Object) {
         )
       }
     }
+    //改变vue methos里方法的this指向
     vm[key] = typeof methods[key] !== 'function' ? noop : bind(methods[key], vm)
   }
 }

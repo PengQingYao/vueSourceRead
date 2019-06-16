@@ -39,11 +39,11 @@ export default class VNode {
     componentOptions?: VNodeComponentOptions,
     asyncFactory?: Function
   ) {
-    this.tag = tag
+    this.tag = tag //标签
     this.data = data
-    this.children = children
-    this.text = text
-    this.elm = elm
+    this.children = children //肃是否有子节点
+    this.text = text //文本内容
+    this.elm = elm //dom节点
     this.ns = undefined
     this.context = context
     this.fnContext = undefined
