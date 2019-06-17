@@ -109,11 +109,11 @@ export function createComponent (
     return
   }
 
-  const baseCtor = context.$options._base
+  const baseCtor = context.$options._base //_base是Vue构造器 core/global-api/index中定义
 
   // plain options object: turn it into a constructor
   if (isObject(Ctor)) {
-    Ctor = baseCtor.extend(Ctor)
+    Ctor = baseCtor.extend(Ctor) // 获取Vue构造器
   }
 
   // if at this stage it's not a constructor or an async component factory,
