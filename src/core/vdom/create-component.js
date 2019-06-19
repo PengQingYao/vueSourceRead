@@ -101,9 +101,9 @@ const hooksToMerge = Object.keys(componentVNodeHooks)
 export function createComponent (
   Ctor: Class<Component> | Function | Object | void,
   data: ?VNodeData,
-  context: Component,
+  context: Component, //vue实例 this
   children: ?Array<VNode>,
-  tag?: string
+  tag?: string //子组件 components
 ): VNode | Array<VNode> | void {
   if (isUndef(Ctor)) {
     return
@@ -113,7 +113,7 @@ export function createComponent (
 
   // plain options object: turn it into a constructor
   if (isObject(Ctor)) {
-    Ctor = baseCtor.extend(Ctor) // 获取Vue构造器
+    Ctor = baseCtor.extend(Ctor) // 获取vue实例
   }
 
   // if at this stage it's not a constructor or an async component factory,

@@ -30,7 +30,7 @@ function ensureCtor (comp: any, base) {
 export function createAsyncPlaceholder (
   factory: Function,
   data: ?VNodeData,
-  context: Component,
+  context: Component, //vue实例
   children: ?Array<VNode>,
   tag: ?string
 ): VNode {
