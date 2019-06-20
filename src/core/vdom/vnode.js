@@ -72,6 +72,7 @@ export default class VNode {
 }
 
 export const createEmptyVNode = (text: string = '') => {
+  debugger;
   const node = new VNode()
   node.text = text
   node.isComment = true

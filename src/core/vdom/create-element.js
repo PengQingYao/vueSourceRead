@@ -26,14 +26,14 @@ const ALWAYS_NORMALIZE = 2
 // wrapper function for providing a more flexible interface
 // without getting yelled at by flow
 export function createElement (
-  context: Component,
-  tag: any,
+  context: Component, //组件实例vm
+  tag: any, //div标签,或者是componetns注册儿的子组件
   data: any,
-  children: any,
+  children: any, //render原生操作的 第三个参数
   normalizationType: any,
   alwaysNormalize: boolean
 ): VNode | Array<VNode> {
-  if (Array.isArray(data) || isPrimitive(data)) { //data不是必填，当data为空时，就将children换到第三个位置
+  if (Array.isArray(data) || isPrimitive(data)) { //data不是必填，当data为空时，就将children换到第三个位置,以此类推
     normalizationType = children
     children = data
     data = undefined

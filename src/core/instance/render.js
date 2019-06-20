@@ -38,7 +38,31 @@ export function initRender (vm: Component) {
   vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
   // normalization is always applied for the public version, used in
   // user-written render functions.
-  // 自己定义render函数，使用$createElement方法
+  // 自己定义render函数，使用$createElement方法 a是v-loader生成的对象 b c d暂时未用到
+  /* a = App = {
+    beforeCreate: [ƒ]
+    beforeDestroy: [ƒ]
+    components:
+    HelloWorld:
+    beforeCreate: [ƒ]
+    beforeDestroy: [ƒ]
+    name: "HelloWorld"
+    props: {msg: ƒ}
+    render: ƒ ()
+    staticRenderFns: (4) [ƒ, ƒ, ƒ, ƒ]
+    __file: "src/components/HelloWorld.vue"
+    _compiled: true
+    _scopeId: "data-v-469af010"
+    __proto__: Object
+    __proto__: Object
+    name: "app"
+    render: ƒ ()
+    staticRenderFns: []
+    __file: "src/App.vue"
+    _compiled: true
+    __proto__: Object
+  }
+ */
   vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
 
   // $attrs & $listeners are exposed for easier HOC creation.
