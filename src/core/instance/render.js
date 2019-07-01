@@ -99,6 +99,7 @@ export function renderMixin (Vue: Class<Component>) {
   }
 
   Vue.prototype._render = function (): VNode {
+    
     const vm: Component = this
     const { render, _parentVnode } = vm.$options //获取选项中的render()方法，以及上次更新dom时使用的虚拟dom
 
