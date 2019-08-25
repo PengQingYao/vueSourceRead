@@ -32,7 +32,7 @@ export default class VNode {
   constructor (
     tag?: string,
     data?: VNodeData,
-    children?: ?Array<VNode>,
+    children?: ?Array<VNode>, //组件的vnode是空
     text?: string,
     elm?: Node,
     context?: Component,

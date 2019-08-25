@@ -27,7 +27,7 @@ const ALWAYS_NORMALIZE = 2
 // without getting yelled at by flow
 export function createElement (
   context: Component, //组件实例vm
-  tag: any, //div标签,或者是componetns注册儿的子组件
+  tag: any, //div标签,或者是componetns注册的子组件
   data: any,
   children: any, //render原生操作的 第三个参数
   normalizationType: any,
@@ -93,7 +93,7 @@ export function _createElement (
     children = simpleNormalizeChildren(children)
   }
   let vnode, ns
-  if (typeof tag === 'string') {
+  if (typeof tag === 'string') { //string类型，主要是模版编译时生成render函数，调用vm._c时用到。
     let Ctor
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag)
     if (config.isReservedTag(tag)) {

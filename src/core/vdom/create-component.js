@@ -33,7 +33,7 @@ import {
 } from 'weex/runtime/recycle-list/render-component-template'
 
 // inline hooks to be invoked on component VNodes during patch
-const componentVNodeHooks = {
+const componentVNodeHooks = { //组件会默认有 init prepatch insert destroy这四个钩子
   init (vnode: VNodeWithData, hydrating: boolean): ?boolean {
     if (
       vnode.componentInstance &&
@@ -99,7 +99,7 @@ const componentVNodeHooks = {
 const hooksToMerge = Object.keys(componentVNodeHooks)
 
 export function createComponent (
-  Ctor: Class<Component> | Function | Object | void,
+  Ctor: Class<Component> | Function | Object | void, //tag标签为compontent的情况下。
   data: ?VNodeData,
   context: Component, //vue实例 this
   children: ?Array<VNode>,
@@ -113,7 +113,7 @@ export function createComponent (
 
   // plain options object: turn it into a constructor
   if (isObject(Ctor)) {
-    Ctor = baseCtor.extend(Ctor) // 获取vue实例
+    Ctor = baseCtor.extend(Ctor) //如果传入的是vue-loader转化后的对象，调用extend方法，对象转换成Vue构造器
   }
 
   // if at this stage it's not a constructor or an async component factory,
@@ -183,11 +183,12 @@ export function createComponent (
   }
 
   // install component management hooks onto the placeholder node
+  //安装组件的生命周期钩子
   installComponentHooks(data)
 
   // return a placeholder vnode
   const name = Ctor.options.name || tag
-  const vnode = new VNode(
+  const vnode = new VNode( //组件的vnode是空
     `vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
     data, undefined, undefined, undefined, context,
     { Ctor, propsData, listeners, tag, children },
@@ -225,11 +226,11 @@ export function createComponentInstanceForVnode (
 
 function installComponentHooks (data: VNodeData) {
   const hooks = data.hook || (data.hook = {})
-  for (let i = 0; i < hooksToMerge.length; i++) {
+  for (let i = 0; i < hooksToMerge.length; i++) { //遍历组件的默认的四个生命周期钩子，init prepatch insert destroy
     const key = hooksToMerge[i]
     const existing = hooks[key]
     const toMerge = componentVNodeHooks[key]
-    if (existing !== toMerge && !(existing && existing._merged)) {
+    if (existing !== toMerge && !(existing && existing._merged)) { //将四个默认的四个生命周期钩子合并到data.hook中
       hooks[key] = existing ? mergeHook(toMerge, existing) : toMerge
     }
   }
