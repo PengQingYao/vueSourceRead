@@ -25,10 +25,15 @@ const ALWAYS_NORMALIZE = 2
 
 // wrapper function for providing a more flexible interface
 // without getting yelled at by flow
-export function createElement (
+export function createElement ( //返回虚拟dom,最终在__patch__方法中挂载到真实dom下
   context: Component, //组件实例vm
+<<<<<<< HEAD
   tag: any, //div标签,或者是componetns注册的子组件
   data: any,
+=======
+  tag: any, //div标签,或者是componetns注册儿的子组件
+  data: any, //原生render里第二个object对象.
+>>>>>>> 6731243b508d58eb19df65928d09eebc8c1d68dc
   children: any, //render原生操作的 第三个参数
   normalizationType: any,
   alwaysNormalize: boolean
